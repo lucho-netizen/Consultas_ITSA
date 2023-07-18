@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link src="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <title>Casos</title>
+   
+</head>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="{{ url_for('register_caso') }}">Registrar Caso</a>
+        <a href="{{ url_for('ver_casos') }}">Ver Caso</a>
+        <a href="{{ url_for('logout') }}"> Cerrar sesión</a>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+        
+        <div class="table100 ver4 m-b-110">
+            <div class="table100-head">
+            <table>
+            <thead>
+            <tr class="row100 head">
+            <th class="cell100 column1">Class name</th>
+            <th class="cell100 column2">Type</th>
+            <th class="cell100 column3">Hours</th>
+            <th class="cell100 column4">Trainer</th>
+            <th class="cell100 column5">Spots</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for v_casos in v_casos %}
+                <td>
+                    {{ v_casos.1}}
+                </td>
+                <td>
+                    {{ v_casos.2}}
+                </td>
+                <td>
+                    {{ v_casos.3}}
+                </td>
+                <td>
+                    {{ v_casos.4}}
+                </td>
+            </tbody>
+            {% endfor %}
+            </table>
+            </div>
+            </div>
+            
+</body>
+
+</html>
