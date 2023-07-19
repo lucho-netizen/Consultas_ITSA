@@ -13,9 +13,9 @@ import http.cookiejar
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = '127.0.0.1'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = 'Rolex.b1'
 app.config['MYSQL_DB'] = 'consultas_iub'
 
 
@@ -110,10 +110,27 @@ def register_caso():
     curs.close()
     return render_template('estudiante/register.html', modulo= modulo, profesor= profesor)
 
-# @app.route('/register_student', methods=['POST'])
-# def register_student():
-#      correo = request.form['correo']
-#     contraseña = request.form['contraseña']
+@app.route('/register_student', methods=['POST'])
+def register_student():
+    msg= ''
+    if request.method == 'POST':
+        correo = request.form['correo']
+        contraseña = request.form['contraseña']
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        tipo = request.form['tipo']
+        documento = request.form['documento']
+        programa = request.form['programa']
+        cursor = mysql.connection.cursor()
+        # cursor.execute('INSERT INTO estudiante(nombre, apellido, tipo_documento, programa, correo, contraseña, numero_estudiante) VALUES (%s, %s, %s, %s, %s, %s, %s)',('3', nombre, apellido, tipo, programa, correo, contraseña, documento))
+        cursor.execute('INSERT INTO estudiante(id, nombre, apellido, tipo_documento, programa, correo, contraseña, numero_estudiante) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',(str(3), str(nombre), str(apellido), str(tipo), str(programa), str(correo), str(contraseña), str(documento)))
+
+        mysql.connection.commit()
+        cursor.close()
+        msg = 'La consulta se ha realizado correctamente!'
+    return redirect(url_for('/index_est', msg=msg))
+
+
 
 
 
