@@ -83,8 +83,10 @@
 								</div>
 								<div class="form-group">
 									<label class="sr-only" for="form-last-name"></label>
-									<input type="text" name="tipo" placeholder="tipo documento"
-										class="form-last-name form-control" id="form-tipo">
+									<select value="tipo" name="tipo">
+										{% for tipo in tipo %}
+										<option value="{{tipo.1}}">{{tipo.1}}</option>
+										{% endfor %}
 								</div>
 								<div class="form-group">
 									<label class="sr-only" for="form-last-name"></label>
@@ -96,6 +98,7 @@
 									<label class="sr-only" for="form-last-name">Programas</label>
 									<select value="programa" name="programa">
 										{% for programa in programa %}
+										<option value="">Seleccione</option>
 										<option value="{{programa.1}}">{{programa.1}}</option>
 										{% endfor %}
 								</div>

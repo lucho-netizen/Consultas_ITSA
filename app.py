@@ -73,7 +73,12 @@ def registro():
     cursor = mysql.connection.cursor()
     cursor.execute('SELECT * FROM programas')
     programa=cursor.fetchall()
-    return render_template('estudiante/registro.html', programa = programa)
+    cursor.close()
+    curs = mysql.connection.cursor()
+    curs.execute('SELECT  * FROM tipo')
+    tipo = curs.fetchall()
+    print(tipo)
+    return render_template('estudiante/registro.html', programa = programa, tipo = tipo)
 
 @app.route('/login_est') #Login_Est_URL
 def login_est():
@@ -123,12 +128,14 @@ def register_student():
         programa = request.form['programa']
         cursor = mysql.connection.cursor()
         # cursor.execute('INSERT INTO estudiante(nombre, apellido, tipo_documento, programa, correo, contraseña, numero_estudiante) VALUES (%s, %s, %s, %s, %s, %s, %s)',('3', nombre, apellido, tipo, programa, correo, contraseña, documento))
-        cursor.execute('INSERT INTO estudiante(id, nombre, apellido, tipo_documento, programa, correo, contraseña, numero_estudiante) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',(str(3), str(nombre), str(apellido), str(tipo), str(programa), str(correo), str(contraseña), str(documento)))
+        cursor.execute('INSERT INTO estudiante(id,nombre, apellido, tipo_documento, programa, correo, contraseña, numero_estudiante) VALUES (%s,%s, %s, %s, %s, %s, %s, %s)',('5',str(nombre), str(apellido), str(tipo), str(programa), str(correo), str(contraseña), str(documento)))
+        # cursor.execute('INSERT INTO estudiante(nombre, apellido, tipo_documento, programa, correo, contraseña, numero_estudiante) VALUES (%s, %s, %s, %s, %s, %s, %s)',(str(nombre), str(apellido), str(tipo), str(programa), str(correo), str(contraseña), str(documento)))
+        #Este es(())
 
         mysql.connection.commit()
         cursor.close()
         msg = 'La consulta se ha realizado correctamente!'
-    return redirect(url_for('/index_est', msg=msg))
+    return redirect(url_for('index_est', msg=msg))
 
 
 
