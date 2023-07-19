@@ -130,7 +130,7 @@ def register_student():
         # cursor.execute('INSERT INTO estudiante(nombre, apellido, tipo_documento, programa, correo, contraseña, numero_estudiante) VALUES (%s, %s, %s, %s, %s, %s, %s)',('3', nombre, apellido, tipo, programa, correo, contraseña, documento))
         cursor.execute('INSERT INTO estudiante(id,nombre, apellido, tipo_documento, programa, correo, contraseña, numero_estudiante) VALUES (%s,%s, %s, %s, %s, %s, %s, %s)',('5',str(nombre), str(apellido), str(tipo), str(programa), str(correo), str(contraseña), str(documento)))
         # cursor.execute('INSERT INTO estudiante(nombre, apellido, tipo_documento, programa, correo, contraseña, numero_estudiante) VALUES (%s, %s, %s, %s, %s, %s, %s)',(str(nombre), str(apellido), str(tipo), str(programa), str(correo), str(contraseña), str(documento)))
-        #Este es(())
+        #Este es((Aquí))
 
         mysql.connection.commit()
         cursor.close()
